@@ -12,7 +12,7 @@ function App() {
   const [numResults, setNumResults] = useState(100)
   const [articles, setArticles] = useState<ArticleObj[]>([])
 
-  const getArticles = (date: string) => {
+  const getArticles = (date: string, numResults: number) => {
     const year = date.substring(0, 4)
     const month = date.substring(5, 7)
     const day = date.substring(8, 10)
@@ -53,7 +53,7 @@ function App() {
             <option value={100}>100</option>
             <option value={200}>200</option>
           </select>
-          <button onClick={() => getArticles(date)}>Search</button>
+          <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
         <ol>
           {articles.map((currArticle) => (
