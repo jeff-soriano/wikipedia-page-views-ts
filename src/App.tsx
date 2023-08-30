@@ -58,7 +58,11 @@ function App() {
 
     for (let i = 0; i < numPages; i++) {
       pageButtons.push(
-        <button key={i} onClick={() => setCurrentPage(i)}>
+        <button
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className="rounded-full px-2 border mx-1 font-poppins text-base w-10 h-10"
+        >
           {i + 1}
         </button>
       )
@@ -69,15 +73,17 @@ function App() {
         <button
           disabled={currentPage === 0}
           onClick={() => setCurrentPage(currentPage - 1)}
+          className="rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10"
         >
-          Previous
+          {'<'}
         </button>
         {pageButtons.map((pageButton) => pageButton)}
         <button
           disabled={currentPage === numPages - 1}
           onClick={() => setCurrentPage(currentPage + 1)}
+          className="rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10"
         >
-          Next
+          {'>'}
         </button>
       </div>
     )
@@ -86,8 +92,8 @@ function App() {
   return (
     <div className="bg-slate-50">
       <div className="h-20 bg-white"></div>
-      <main className="flex flex-col items-center w-7/12 mx-auto">
-        <h1 className="text-4xl my-10">Top Wikipedia Articles</h1>
+      <main className="flex flex-col items-center w-7/12 mx-auto py-8">
+        <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
         <div className="bg-white mb-5 flex justify-between w-full">
           <input
             type="date"
