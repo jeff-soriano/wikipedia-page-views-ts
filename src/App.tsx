@@ -36,11 +36,11 @@ function App() {
     const endIndex = startIndex + 10
 
     return articles.slice(startIndex, endIndex).map((currArticle, index) => (
-      <li key={index}>
+      <div key={index}>
         <p>{currArticle.rank}</p>
         <p>{currArticle.article}</p>
         <p>{currArticle.views}</p>
-      </li>
+      </div>
     ))
   }
 
@@ -76,11 +76,10 @@ function App() {
 
   return (
     <div>
-      <header>
-        <h1>Top Wikipedia Articles</h1>
-      </header>
-      <main>
-        <div>
+      <div className="h-20"></div>
+      <main className="flex flex-col items-center">
+        <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
+        <div className="mb-5">
           <input
             type="date"
             id="wikipedia-date"
@@ -102,7 +101,7 @@ function App() {
           </select>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
-        <ol>{renderArticles(articles, currentPage)}</ol>
+        <div className="mb-10">{renderArticles(articles, currentPage)}</div>
         {renderPageNav(numPages)}
       </main>
     </div>
