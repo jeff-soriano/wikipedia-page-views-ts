@@ -9,6 +9,7 @@ type ArticleObj = {
 
 function App() {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
+  const [numResults, setNumResults] = useState(100)
   const [articles, setArticles] = useState<ArticleObj[]>([])
 
   const getArticles = (date: string) => {
@@ -21,7 +22,7 @@ function App() {
     )
       .then((res) => res.json())
       .then((data) => {
-        const articles = data.items[0].articles
+        const articles = data.items[0].articles.slice(0, numResults)
         setArticles([...articles])
       })
   }
@@ -40,7 +41,12 @@ function App() {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <select name="num-articles" id="num-articles">
+          <select
+            name="num-articles"
+            id="num-articles"
+            value={numResults}
+            onChange={(e) => setNumResults(+e.target.value)}
+          >
             <option value={25}>25</option>
             <option value={50}>50</option>
             <option value={75}>75</option>
