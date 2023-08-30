@@ -75,11 +75,11 @@ function App() {
   }
 
   return (
-    <div>
-      <div className="h-20"></div>
-      <main className="flex flex-col items-center">
-        <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
-        <div className="mb-5">
+    <div className="bg-slate-50">
+      <div className="h-20 bg-white"></div>
+      <main className="flex flex-col items-center w-7/12 mx-auto">
+        <h1 className="text-4xl my-10">Top Wikipedia Articles</h1>
+        <div className="bg-white mb-5 flex justify-between w-full">
           <input
             type="date"
             id="wikipedia-date"
@@ -101,7 +101,9 @@ function App() {
           </select>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
-        <div className="mb-10">{renderArticles(articles, currentPage)}</div>
+        <div className="bg-white mb-10 p-4 w-full">
+          {renderArticles(articles, currentPage)}
+        </div>
         {renderPageNav(numPages)}
       </main>
     </div>
