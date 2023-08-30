@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css?family=Lora');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 body {
   margin: 0;
@@ -11,4 +12,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.font-poppins {
+  font-family: 'Poppins';
 }

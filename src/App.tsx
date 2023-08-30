@@ -41,12 +41,12 @@ function App() {
         className="flex justify-between w-full border border-gray-200 px-6 py-5 rounded-lg mb-4"
       >
         <div>
-          <span className="text-gray-400">{currArticle.rank}</span>
+          <span className="text-gray-400 text-sm">{currArticle.rank}</span>
           <span className="ml-10">
             {currArticle.article.replaceAll('_', ' ')}
           </span>
         </div>
-        <span className="text-gray-400">
+        <span className="text-gray-400 font-poppins text-sm">
           {currArticle.views.toLocaleString()} views
         </span>
       </div>
@@ -110,7 +110,7 @@ function App() {
           </select>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
-        <div className="bg-white mb-10 p-8 w-full rounded-md">
+        <div className="bg-white mb-10 p-7 w-full rounded-md">
           {renderArticles(articles, currentPage)}
         </div>
         {renderPageNav(numPages)}
