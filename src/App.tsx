@@ -1,8 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
+
+type ArticleObj = {
+  article: string
+  rank: number
+  views: number
+}
 
 function App() {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
+  const [articles, setArticles] = useState<ArticleObj[]>([])
 
   const getArticles = (date: string) => {
     const year = date.substring(0, 4)
@@ -14,7 +21,8 @@ function App() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        const articles = data.items[0].articles
+        setArticles([...articles])
       })
   }
 
@@ -42,54 +50,13 @@ function App() {
           <button onClick={() => getArticles(date)}>Search</button>
         </div>
         <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
-        </ol>
-        <ol>
-          <p>1</p>
-          <p>The Last of Us (TV Show)</p>
-          <p>5,555,555 views</p>
+          {articles.map((currArticle) => (
+            <li>
+              <p>{currArticle.rank}</p>
+              <p>{currArticle.article}</p>
+              <p>{currArticle.views}</p>
+            </li>
+          ))}
         </ol>
       </main>
     </div>
