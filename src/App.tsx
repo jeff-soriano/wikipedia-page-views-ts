@@ -42,9 +42,13 @@ function App() {
       >
         <div>
           <span className="text-gray-400">{currArticle.rank}</span>
-          <span className="ml-10">{currArticle.article}</span>
+          <span className="ml-10">
+            {currArticle.article.replaceAll('_', ' ')}
+          </span>
         </div>
-        <span className="text-gray-400">{currArticle.views} views</span>
+        <span className="text-gray-400">
+          {currArticle.views.toLocaleString()} views
+        </span>
       </div>
     ))
   }
