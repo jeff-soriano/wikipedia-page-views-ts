@@ -36,10 +36,15 @@ function App() {
     const endIndex = startIndex + 10
 
     return articles.slice(startIndex, endIndex).map((currArticle, index) => (
-      <div key={index}>
-        <p>{currArticle.rank}</p>
-        <p>{currArticle.article}</p>
-        <p>{currArticle.views}</p>
+      <div
+        key={index}
+        className="flex justify-between w-full border border-gray-200 px-6 py-5 rounded-lg mb-4"
+      >
+        <div>
+          <span className="text-gray-400">{currArticle.rank}</span>
+          <span className="ml-10">{currArticle.article}</span>
+        </div>
+        <span className="text-gray-400">{currArticle.views} views</span>
       </div>
     ))
   }
@@ -101,7 +106,7 @@ function App() {
           </select>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
-        <div className="bg-white mb-10 p-4 w-full">
+        <div className="bg-white mb-10 p-8 w-full rounded-md">
           {renderArticles(articles, currentPage)}
         </div>
         {renderPageNav(numPages)}
