@@ -11,6 +11,9 @@ function App() {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10))
   const [numResults, setNumResults] = useState(100)
   const [articles, setArticles] = useState<ArticleObj[]>([])
+  const [currentPage, setCurrentPage] = useState(0)
+
+  const numPages = Math.ceil(articles.length / 10)
 
   const getArticles = (date: string, numResults: number) => {
     const year = date.substring(0, 4)
@@ -24,7 +27,51 @@ function App() {
       .then((data) => {
         const articles = data.items[0].articles.slice(0, numResults)
         setArticles([...articles])
+        setCurrentPage(0)
       })
+  }
+
+  const renderArticles = (articles: ArticleObj[], currentPage: number) => {
+    const startIndex = currentPage * 10
+    const endIndex = startIndex + 10
+
+    return articles.slice(startIndex, endIndex).map((currArticle, index) => (
+      <li key={index}>
+        <p>{currArticle.rank}</p>
+        <p>{currArticle.article}</p>
+        <p>{currArticle.views}</p>
+      </li>
+    ))
+  }
+
+  const renderPageNav = (numPages: number) => {
+    const pageButtons = []
+
+    for (let i = 0; i < numPages; i++) {
+      pageButtons.push(
+        <button key={i} onClick={() => setCurrentPage(i)}>
+          {i + 1}
+        </button>
+      )
+    }
+
+    return (
+      <div>
+        <button
+          disabled={currentPage === 0}
+          onClick={() => setCurrentPage(currentPage - 1)}
+        >
+          Previous
+        </button>
+        {pageButtons.map((pageButton) => pageButton)}
+        <button
+          disabled={currentPage === numPages - 1}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          Next
+        </button>
+      </div>
+    )
   }
 
   return (
@@ -55,15 +102,8 @@ function App() {
           </select>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
-        <ol>
-          {articles.map((currArticle) => (
-            <li>
-              <p>{currArticle.rank}</p>
-              <p>{currArticle.article}</p>
-              <p>{currArticle.views}</p>
-            </li>
-          ))}
-        </ol>
+        <ol>{renderArticles(articles, currentPage)}</ol>
+        {renderPageNav(numPages)}
       </main>
     </div>
   )
