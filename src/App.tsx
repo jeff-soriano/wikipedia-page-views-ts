@@ -7,7 +7,8 @@ import list from './images/list.svg'
 import globe from './images/globe.svg'
 import useOutsideClick from './hooks/useOutsideClick'
 import { countries } from './data/countries'
-import InputButton from './components/InputButton.tsx'
+import InputButton from './components/InputButton'
+import DatePicker from './components/DatePicker'
 
 var classNames = require('classnames')
 
@@ -139,24 +140,11 @@ function App() {
       <main className="flex flex-col items-center w-6/12 mx-auto py-8">
         <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
         <div className="bg-white mb-5 flex justify-between w-full rounded-full px-4 py-3">
-          <ReactDatePicker
-            selected={date}
+          <DatePicker
+            date={date}
             onChange={(date) => date && setDate(date)}
-            customInput={
-              <InputButton
-                isSelecting={isSelectingDate}
-                onClick={() => setIsSelectingDate(true)}
-                svgSrc={calendar}
-                svgAlt="calendar"
-                label="DATE"
-                value={date.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                  timeZone: 'UTC',
-                })}
-              />
-            }
+            isSelectingDate={isSelectingDate}
+            onClick={() => setIsSelectingDate(true)}
             onCalendarClose={() => setIsSelectingDate(false)}
             onCalendarOpen={() => setIsSelectingDate(true)}
           />
