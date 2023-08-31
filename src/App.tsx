@@ -15,7 +15,12 @@ type ArticleObj = {
 }
 
 function App() {
-  const [date, setDate] = useState(new Date())
+  const today = new Date()
+  const yesterday = new Date(today)
+
+  yesterday.setDate(yesterday.getDate() - 1)
+
+  const [date, setDate] = useState(yesterday)
   const [numResults, setNumResults] = useState(100)
   const [articles, setArticles] = useState<ArticleObj[]>([])
   const [currentPage, setCurrentPage] = useState(0)
