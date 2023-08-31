@@ -130,7 +130,7 @@ function App() {
   )
 
   return (
-    <div className="bg-slate-50">
+    <div>
       <div className="h-20 bg-white"></div>
       <main className="flex flex-col items-center w-7/12 mx-auto py-8">
         <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
@@ -163,10 +163,14 @@ function App() {
           </select>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
-        <div className="bg-white mb-10 p-7 w-full rounded-md">
-          {renderArticles(articles, currentPage)}
-        </div>
-        {renderPageNav(numPages)}
+        {articles.length > 0 && (
+          <>
+            <div className="bg-white mb-10 p-7 w-full rounded-md">
+              {renderArticles(articles, currentPage)}
+            </div>
+            {renderPageNav(numPages)}
+          </>
+        )}
       </main>
     </div>
   )
