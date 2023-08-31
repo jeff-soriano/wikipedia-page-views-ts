@@ -7,6 +7,7 @@ import list from './images/list.svg'
 import globe from './images/globe.svg'
 import useOutsideClick from './hooks/useOutsideClick'
 import { countries } from './data/countries'
+import InputButton from './components/InputButton.tsx'
 
 var classNames = require('classnames')
 
@@ -126,32 +127,6 @@ function App() {
     )
   }
 
-  const DateButton = () => (
-    <button
-      className={classNames(
-        {
-          'bg-slate-100': isSelectingDate,
-          'hover:bg-slate-50': !isSelectingDate,
-        },
-        'flex items-center rounded-full px-3 py-2 font-poppins'
-      )}
-      onClick={() => setIsSelectingDate(true)}
-    >
-      <img src={calendar} alt="calendar" />
-      <div className="text-left ml-4 mr-6">
-        <div className="text-xs">DATE ^</div>
-        <div>
-          {date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            timeZone: 'UTC',
-          })}
-        </div>
-      </div>
-    </button>
-  )
-
   const numResultsOptionsRef = useRef(null)
   useOutsideClick(numResultsOptionsRef, () => setIsSelectingNumResults(false))
 
@@ -167,7 +142,21 @@ function App() {
           <ReactDatePicker
             selected={date}
             onChange={(date) => date && setDate(date)}
-            customInput={DateButton()}
+            customInput={
+              <InputButton
+                isSelecting={isSelectingDate}
+                onClick={() => setIsSelectingDate(true)}
+                svgSrc={calendar}
+                svgAlt="calendar"
+                label="DATE"
+                value={date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  timeZone: 'UTC',
+                })}
+              />
+            }
             onCalendarClose={() => setIsSelectingDate(false)}
             onCalendarOpen={() => setIsSelectingDate(true)}
           />
