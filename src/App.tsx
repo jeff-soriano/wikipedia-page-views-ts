@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
 import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import dateSvg from './images/date.svg'
+import calendar from './images/calendar.svg'
+import list from './images/list.svg'
+import useOutsideClick from './hooks/useOutsideClick'
 
 var classNames = require('classnames')
 
@@ -18,6 +20,7 @@ function App() {
   const [articles, setArticles] = useState<ArticleObj[]>([])
   const [currentPage, setCurrentPage] = useState(0)
   const [isSelectingDate, setIsSelectingDate] = useState(false)
+  const [isSelectingNumResults, setIsSelectingNumResults] = useState(false)
 
   const numPages = Math.ceil(articles.length / 10)
 
@@ -111,10 +114,16 @@ function App() {
 
   const DateButton = () => (
     <button
-      className="flex items-center"
+      className={classNames(
+        {
+          'bg-slate-100': isSelectingDate,
+          'hover:bg-slate-50': !isSelectingDate,
+        },
+        'flex items-center rounded-full px-3 py-2 font-poppins'
+      )}
       onClick={() => setIsSelectingDate(true)}
     >
-      <img src={dateSvg} alt="Your SVG" />
+      <img src={calendar} alt="calendar" />
       <div className="text-left ml-4 mr-6">
         <div className="text-xs">DATE ^</div>
         <div>
@@ -129,6 +138,9 @@ function App() {
     </button>
   )
 
+  const numResultsOptionsRef = useRef(null)
+  useOutsideClick(numResultsOptionsRef, () => setIsSelectingNumResults(false))
+
   return (
     <div>
       <div className="h-20 bg-white"></div>
@@ -139,28 +151,92 @@ function App() {
             selected={date}
             onChange={(date) => date && setDate(date)}
             customInput={DateButton()}
-            className={classNames(
-              {
-                'bg-slate-100': isSelectingDate,
-                'hover:bg-slate-50': !isSelectingDate,
-              },
-              'rounded-full px-3 py-2 font-poppins'
-            )}
             onCalendarClose={() => setIsSelectingDate(false)}
             onCalendarOpen={() => setIsSelectingDate(true)}
           />
-          <select
-            name="num-articles"
-            id="num-articles"
-            value={numResults}
-            onChange={(e) => setNumResults(+e.target.value)}
-          >
-            <option value={25}>25</option>
-            <option value={50}>50</option>
-            <option value={75}>75</option>
-            <option value={100}>100</option>
-            <option value={200}>200</option>
-          </select>
+          <div>
+            <button
+              className={classNames(
+                {
+                  'bg-slate-100': isSelectingDate,
+                  'hover:bg-slate-50': !isSelectingDate,
+                },
+                'flex items-center rounded-full px-3 py-2 font-poppins'
+              )}
+              onClick={() => setIsSelectingNumResults(true)}
+            >
+              <img src={list} alt="list" />
+              <div className="text-left ml-4 mr-6">
+                <div className="text-xs">NUM RESULTS ^</div>
+                <div>{numResults}</div>
+              </div>
+            </button>
+            <ul
+              ref={numResultsOptionsRef}
+              className={classNames(
+                'bg-white z-10 rounded-3xl py-6 absolute w-52 drop-shadow-lg font-poppins',
+                {
+                  hidden: !isSelectingNumResults,
+                }
+              )}
+            >
+              <li
+                className={classNames(
+                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
+                )}
+                onClick={() => {
+                  setNumResults(25)
+                  setIsSelectingNumResults(false)
+                }}
+              >
+                25
+              </li>
+              <li
+                className={classNames(
+                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
+                )}
+                onClick={() => {
+                  setNumResults(50)
+                  setIsSelectingNumResults(false)
+                }}
+              >
+                50
+              </li>
+              <li
+                className={classNames(
+                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
+                )}
+                onClick={() => {
+                  setNumResults(75)
+                  setIsSelectingNumResults(false)
+                }}
+              >
+                75
+              </li>
+              <li
+                className={classNames(
+                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
+                )}
+                onClick={() => {
+                  setNumResults(100)
+                  setIsSelectingNumResults(false)
+                }}
+              >
+                100
+              </li>
+              <li
+                className={classNames(
+                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
+                )}
+                onClick={() => {
+                  setNumResults(200)
+                  setIsSelectingNumResults(false)
+                }}
+              >
+                200
+              </li>
+            </ul>
+          </div>
           <button onClick={() => getArticles(date, numResults)}>Search</button>
         </div>
         {articles.length > 0 && (
