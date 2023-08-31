@@ -17,3 +17,25 @@ code {
 .font-poppins {
   font-family: 'Poppins';
 }
+
+/* Customizing the react date picker */
+.react-datepicker {
+  font-family: 'Poppins' !important;
+  font-size: 14px !important;
+}
+
+.react-datepicker__header {
+  background-color: white !important;
+  border: 0px !important;
+}
+
+.react-datepicker__navigation--next,
+.react-datepicker__navigation--previous {
+  margin-top: 6px;
+}
+
+.react-datepicker__day--selected {
+  border-radius: 50% !important;
+  color: #025b4b !important;
+  background-color: #b3cec9 !important;
+}
