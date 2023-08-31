@@ -6,7 +6,7 @@ interface Props {
   svgSrc: string
   svgAlt: string
   label: string
-  value: string
+  value: string | number
 }
 
 export default function InputButton({

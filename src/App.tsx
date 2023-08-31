@@ -1,14 +1,13 @@
 import { useRef, useState } from 'react'
 import './App.css'
-import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import calendar from './images/calendar.svg'
 import list from './images/list.svg'
 import globe from './images/globe.svg'
 import useOutsideClick from './hooks/useOutsideClick'
 import { countries } from './data/countries'
 import InputButton from './components/InputButton'
 import DatePicker from './components/DatePicker'
+import ResultsPicker from './components/ResultsPicker'
 
 var classNames = require('classnames')
 
@@ -128,9 +127,6 @@ function App() {
     )
   }
 
-  const numResultsOptionsRef = useRef(null)
-  useOutsideClick(numResultsOptionsRef, () => setIsSelectingNumResults(false))
-
   const countryOptionsRef = useRef(null)
   useOutsideClick(countryOptionsRef, () => setIsSelectingCountries(false))
 
@@ -148,89 +144,17 @@ function App() {
             onCalendarClose={() => setIsSelectingDate(false)}
             onCalendarOpen={() => setIsSelectingDate(true)}
           />
-          <div>
-            <button
-              className={classNames(
-                {
-                  'bg-slate-100': isSelectingNumResults,
-                  'hover:bg-slate-50': !isSelectingNumResults,
-                },
-                'flex items-center rounded-full px-3 py-2 font-poppins'
-              )}
-              onClick={() => setIsSelectingNumResults(true)}
-            >
-              <img src={list} alt="list" />
-              <div className="text-left ml-4 mr-6">
-                <div className="text-xs">NUM RESULTS ^</div>
-                <div>{numResults}</div>
-              </div>
-            </button>
-            <ul
-              ref={numResultsOptionsRef}
-              className={classNames(
-                'bg-white z-10 rounded-3xl py-6 absolute w-52 drop-shadow-lg font-poppins',
-                {
-                  hidden: !isSelectingNumResults,
-                }
-              )}
-            >
-              <li
-                className={classNames(
-                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
-                )}
-                onClick={() => {
-                  setNumResults(25)
-                  setIsSelectingNumResults(false)
-                }}
-              >
-                25
-              </li>
-              <li
-                className={classNames(
-                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
-                )}
-                onClick={() => {
-                  setNumResults(50)
-                  setIsSelectingNumResults(false)
-                }}
-              >
-                50
-              </li>
-              <li
-                className={classNames(
-                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
-                )}
-                onClick={() => {
-                  setNumResults(75)
-                  setIsSelectingNumResults(false)
-                }}
-              >
-                75
-              </li>
-              <li
-                className={classNames(
-                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
-                )}
-                onClick={() => {
-                  setNumResults(100)
-                  setIsSelectingNumResults(false)
-                }}
-              >
-                100
-              </li>
-              <li
-                className={classNames(
-                  'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
-                )}
-                onClick={() => {
-                  setNumResults(200)
-                  setIsSelectingNumResults(false)
-                }}
-              >
-                200
-              </li>
-            </ul>
-          </div>
+          <ResultsPicker
+            isSelectingNumResults={isSelectingNumResults}
+            onClick={() => setIsSelectingNumResults(true)}
+            numResults={numResults}
+            outsideClickHandler={() => setIsSelectingNumResults(false)}
+            onClickNumResults={(numResults) => {
+              setNumResults(numResults)
+              setIsSelectingNumResults(false)
+            }}
+            resultsOptions={[25, 50, 75, 100, 200]}
+          />
           <div>
             <button
               className={classNames(

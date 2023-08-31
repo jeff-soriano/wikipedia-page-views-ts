@@ -10,6 +10,7 @@ interface Props {
   onCalendarClose: () => void
   onCalendarOpen: () => void
 }
+
 export default function DatePicker({
   date,
   onChange,
