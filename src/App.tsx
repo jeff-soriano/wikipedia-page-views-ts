@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+var classNames = require('classnames')
 
 type ArticleObj = {
   article: string
@@ -55,13 +56,18 @@ function App() {
 
   const renderPageNav = (numPages: number) => {
     const pageButtons = []
+    const prevBtnDisabled = currentPage === 0
+    const nextBtnDisabled = currentPage === numPages - 1
 
     for (let i = 0; i < numPages; i++) {
       pageButtons.push(
         <button
           key={i}
           onClick={() => setCurrentPage(i)}
-          className="rounded-full px-2 border mx-1 font-poppins text-base w-10 h-10"
+          className={classNames(
+            { 'bg-lime-200 border-lime-200 text-green-700': currentPage === i },
+            'rounded-full px-2 border mx-1 font-poppins text-base w-10 h-10'
+          )}
         >
           {i + 1}
         </button>
@@ -71,17 +77,23 @@ function App() {
     return (
       <div>
         <button
-          disabled={currentPage === 0}
+          disabled={prevBtnDisabled}
           onClick={() => setCurrentPage(currentPage - 1)}
-          className="rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10"
+          className={classNames(
+            { 'bg-gray-300': prevBtnDisabled },
+            'rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10'
+          )}
         >
           {'<'}
         </button>
         {pageButtons.map((pageButton) => pageButton)}
         <button
-          disabled={currentPage === numPages - 1}
+          disabled={nextBtnDisabled}
           onClick={() => setCurrentPage(currentPage + 1)}
-          className="rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10"
+          className={classNames(
+            { 'bg-gray-300': nextBtnDisabled },
+            'rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10'
+          )}
         >
           {'>'}
         </button>
