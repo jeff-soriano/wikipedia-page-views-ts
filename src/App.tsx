@@ -30,8 +30,7 @@ function App() {
   const [isSelectingNumResults, setIsSelectingNumResults] = useState(false)
   const [isSelectingCountries, setIsSelectingCountries] = useState(false)
   const [currentCountryCode, setCurrentCountryCode] = useState('US')
-
-  console.log('countries', countries)
+  const [isError, setIsError] = useState(false)
 
   const numPages = Math.ceil(articles.length / 10)
 
@@ -51,6 +50,10 @@ function App() {
         const articles = data.items[0].articles.slice(0, numResults)
         setArticles([...articles])
         setCurrentPage(0)
+        setIsError(false)
+      })
+      .catch(() => {
+        setIsError(true)
       })
   }
 
@@ -306,6 +309,13 @@ function App() {
             </div>
             {renderPageNav(numPages)}
           </>
+        )}
+        {isError && (
+          <div className="bg-white mb-10 p-7 w-full rounded-md bg-red-100 text-red-500 font-poppins">
+            There was an error fetching the articles. Either there was no data
+            for this country or you picked an invalid date. Please choose a date
+            before today.
+          </div>
         )}
       </main>
     </div>
