@@ -4,14 +4,16 @@ import ReactDatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import calendar from './images/calendar.svg'
 import list from './images/list.svg'
+import globe from './images/globe.svg'
 import useOutsideClick from './hooks/useOutsideClick'
+import { countries } from './data/countries'
 
 var classNames = require('classnames')
 
 type ArticleObj = {
   article: string
   rank: number
-  views: number
+  views_ceil: number
 }
 
 function App() {
@@ -26,6 +28,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0)
   const [isSelectingDate, setIsSelectingDate] = useState(false)
   const [isSelectingNumResults, setIsSelectingNumResults] = useState(false)
+  const [isSelectingCountries, setIsSelectingCountries] = useState(false)
+  const [currentCountryCode, setCurrentCountryCode] = useState('US')
+
+  console.log('countries', countries)
 
   const numPages = Math.ceil(articles.length / 10)
 
@@ -38,7 +44,7 @@ function App() {
     const day = ('0' + date.getDate()).slice(-2)
 
     fetch(
-      `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${year}/${month}/${day}`
+      `https://wikimedia.org/api/rest_v1/metrics/pageviews/top-per-country/${currentCountryCode}/all-access/${year}/${month}/${day}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -64,7 +70,7 @@ function App() {
           </span>
         </div>
         <span className="text-gray-400 font-poppins text-sm">
-          {currArticle.views.toLocaleString()} views
+          {currArticle.views_ceil.toLocaleString()} views
         </span>
       </div>
     ))
@@ -145,6 +151,9 @@ function App() {
 
   const numResultsOptionsRef = useRef(null)
   useOutsideClick(numResultsOptionsRef, () => setIsSelectingNumResults(false))
+
+  const countryOptionsRef = useRef(null)
+  useOutsideClick(countryOptionsRef, () => setIsSelectingCountries(false))
 
   return (
     <div>
@@ -240,6 +249,47 @@ function App() {
               >
                 200
               </li>
+            </ul>
+          </div>
+          <div>
+            <button
+              className={classNames(
+                {
+                  'bg-slate-100': isSelectingCountries,
+                  'hover:bg-slate-50': !isSelectingCountries,
+                },
+                'flex items-center rounded-full px-3 py-2 font-poppins'
+              )}
+              onClick={() => setIsSelectingCountries(true)}
+            >
+              <img src={globe} alt="globe" />
+              <div className="text-left ml-4 mr-6">
+                <div className="text-xs">COUNTRY ^</div>
+                <div>{countries[currentCountryCode]}</div>
+              </div>
+            </button>
+            <ul
+              ref={countryOptionsRef}
+              className={classNames(
+                'bg-white z-10 rounded-3xl py-6 absolute w-52 drop-shadow-lg font-poppins h-72 overflow-scroll',
+                {
+                  hidden: !isSelectingCountries,
+                }
+              )}
+            >
+              {Object.entries(countries).map(([key, value]) => (
+                <li
+                  className={classNames(
+                    'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
+                  )}
+                  onClick={() => {
+                    setCurrentCountryCode(key)
+                    setIsSelectingCountries(false)
+                  }}
+                >
+                  {value}
+                </li>
+              ))}
             </ul>
           </div>
           <button
