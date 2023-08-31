@@ -158,8 +158,8 @@ function App() {
             <button
               className={classNames(
                 {
-                  'bg-slate-100': isSelectingDate,
-                  'hover:bg-slate-50': !isSelectingDate,
+                  'bg-slate-100': isSelectingNumResults,
+                  'hover:bg-slate-50': !isSelectingNumResults,
                 },
                 'flex items-center rounded-full px-3 py-2 font-poppins'
               )}
@@ -237,7 +237,12 @@ function App() {
               </li>
             </ul>
           </div>
-          <button onClick={() => getArticles(date, numResults)}>Search</button>
+          <button
+            className="rounded-full px-3 py-2 font-poppins bg-green-800 text-white w-32 text-center"
+            onClick={() => getArticles(date, numResults)}
+          >
+            Search
+          </button>
         </div>
         {articles.length > 0 && (
           <>
