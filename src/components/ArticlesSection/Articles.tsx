@@ -16,15 +16,15 @@ export default function Articles({ articles, currentPage }: Props) {
           key={index}
           className="flex justify-between w-full border border-gray-200 px-6 py-5 rounded-lg mb-4"
         >
-          <div>
+          <div className="flex w-2/3">
             <span className="text-gray-400 text-sm">{currArticle.rank}</span>
             <span className="ml-10">
               {currArticle.article.replaceAll('_', ' ')}
             </span>
           </div>
-          <span className="text-gray-400 font-poppins text-sm">
+          <div className="text-gray-400 font-poppins text-sm">
             {currArticle.views_ceil.toLocaleString()} views
-          </span>
+          </div>
         </div>
       ))}
     </>
