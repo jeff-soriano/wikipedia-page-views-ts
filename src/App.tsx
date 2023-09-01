@@ -27,6 +27,7 @@ function App() {
   const [isSelectingCountry, setIsSelectingCountry] = useState(false)
   const [currentCountryCode, setCurrentCountryCode] = useState('US')
   const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const numPages = Math.ceil(articles.length / 10)
 
@@ -38,6 +39,7 @@ function App() {
     const month = ('0' + (date.getMonth() + 1)).slice(-2)
     const day = ('0' + date.getDate()).slice(-2)
 
+    setIsLoading(true)
     fetch(
       `https://wikimedia.org/api/rest_v1/metrics/pageviews/top-per-country/${currentCountryCode}/all-access/${year}/${month}/${day}`
     )
@@ -52,6 +54,7 @@ function App() {
         setArticles([])
         setIsError(true)
       })
+      .finally(() => setIsLoading(false))
   }
 
   return (
@@ -96,20 +99,28 @@ function App() {
             Search
           </button>
         </div>
-        <ArticlesSection
-          articles={articles}
-          currentPage={currentPage}
-          numPages={numPages}
-          onPageButtonClick={(page) => setCurrentPage(page)}
-          onNextPageButtonClick={() => setCurrentPage(currentPage + 1)}
-          onPrevPageButtonClick={() => setCurrentPage(currentPage - 1)}
-        />
-        {isError && (
+        {isLoading ? (
+          <div className="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        ) : isError ? (
           <div className="bg-white mb-10 p-7 w-full rounded-md bg-red-100 text-red-500 font-poppins">
             There was an error fetching the articles. Either there was no data
             for this country or you picked an invalid date. Please choose a date
             before today.
           </div>
+        ) : (
+          <ArticlesSection
+            articles={articles}
+            currentPage={currentPage}
+            numPages={numPages}
+            onPageButtonClick={(page) => setCurrentPage(page)}
+            onNextPageButtonClick={() => setCurrentPage(currentPage + 1)}
+            onPrevPageButtonClick={() => setCurrentPage(currentPage - 1)}
+          />
         )}
       </main>
     </div>
