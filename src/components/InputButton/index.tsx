@@ -1,3 +1,6 @@
+import chevronDown from '../../images/chevron-down.svg'
+import chevronUp from '../../images/chevron-up.svg'
+
 var classNames = require('classnames')
 
 interface Props {
@@ -33,12 +36,12 @@ export default function InputButton({
     >
       <img src={svgSrc} alt={svgAlt} />
       <div className="text-left ml-4 mr-6">
-        <div className="text-xs text-neutral-500">
-          {label}{' '}
+        <div className="text-xs text-neutral-500 flex">
+          <span className="mr-1">{label} </span>
           {isSelecting ? (
-            <i className="fas fa-chevron-up"></i>
+            <img src={chevronUp} alt="chevron-up" />
           ) : (
-            <i className="fas fa-chevron-down"></i>
+            <img src={chevronDown} alt="chevron-down" />
           )}
         </div>
         <div>{value}</div>
