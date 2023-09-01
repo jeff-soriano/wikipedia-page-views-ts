@@ -17,12 +17,12 @@ describe('ResultsPicker Component', () => {
 
   it('should render the InputButton correctly', () => {
     const { getByText } = render(<ResultsPicker {...mockProps} />)
-    expect(getByText('NUM RESULTS ^')).toBeInTheDocument()
+    expect(getByText('NUM RESULTS')).toBeInTheDocument()
   })
 
   it('should call onClick when the InputButton is clicked', () => {
     const { getByText } = render(<ResultsPicker {...mockProps} />)
-    fireEvent.click(getByText('NUM RESULTS ^'))
+    fireEvent.click(getByText('NUM RESULTS'))
     expect(mockProps.onClick).toHaveBeenCalledTimes(1)
   })
 

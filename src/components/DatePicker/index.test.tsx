@@ -17,7 +17,7 @@ describe('DatePicker Component', () => {
 
   it('should call onChange when a new date is selected', async () => {
     render(<DatePicker {...mockProps} />)
-    const datePicker = screen.getByText('DATE ^')
+    const datePicker = screen.getByText('DATE')
     await act(async () => {
       fireEvent.click(datePicker)
     })
