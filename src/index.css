@@ -56,36 +56,32 @@ body {
 * Was not able to fully style it up to figma spec
 */
 .react-datepicker {
-  font-family: 'Poppins' !important;
-  font-size: 14px !important;
+  @apply font-poppins text-sm !important;
 }
 
 .react-datepicker__header {
-  background-color: white !important;
-  border: 0px !important;
+  @apply bg-white border-0 !important;
 }
 
 .react-datepicker__navigation--next,
 .react-datepicker__navigation--previous {
-  margin-top: 6px;
+  @apply mt-1.5;
 }
 
 .react-datepicker__day--selected {
-  border-radius: 50% !important;
-  color: var(--green-500) !important;
-  background-color: var(--avocado-300) !important;
+  @apply rounded-full selected-page-colors !important;
 }
 
 /* Media queries for responsiveness */
-@media screen and (min-width: 1125px) {
+@media screen and (min-width: 1131px) {
   .main-width {
-    width: 66.666667%;
+    @apply w-2/3;
   }
 }
 
 @media screen and (min-width: 1088px) {
   .main-width {
-    width: 75%;
+    @apply w-10/12;
   }
 
   .input-left-border {
@@ -101,18 +97,15 @@ body {
 
 @media screen and (max-width: 815px) {
   .main-width {
-    width: 100%;
+    @apply w-full;
   }
 
   .control-bar {
-    flex-direction: column;
-    border-radius: 0px;
+    @apply flex-col rounded-none;
   }
 
   .search-button {
-    width: 100%;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    @apply w-full my-2;
   }
 }
 

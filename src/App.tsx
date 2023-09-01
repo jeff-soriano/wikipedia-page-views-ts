@@ -103,7 +103,7 @@ function App() {
             }}
           />
           <button
-            className="rounded-full px-3 py-2 font-poppins text-white w-32 text-center search-button"
+            className="rounded-full px-3 py-2 font-poppins text-white w-32 text-center search-button w-40"
             onClick={() => getArticles(date, numResults)}
             style={{ backgroundColor: '#025B4B' }}
           >
