@@ -1,7 +1,6 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import ArticlesSection, { ArticleObj } from './'
 
-// Mocked props for testing
 const mockArticles: ArticleObj[] = [
   { article: 'Article 1', rank: 1, views_ceil: 100 },
   { article: 'Article 2', rank: 2, views_ceil: 200 },
