@@ -28,7 +28,10 @@ export default function ArticlesSection({
     <>
       {articles.length > 0 && (
         <>
-          <div className="bg-white mb-10 p-7 w-full rounded-md drop-shadow-lg">
+          <div
+            className="bg-white mb-10 p-7 w-full rounded-md drop-shadow-lg"
+            style={{ zIndex: '-10' }}
+          >
             <Articles articles={articles} currentPage={currentPage} />
           </div>
           <PageNav
