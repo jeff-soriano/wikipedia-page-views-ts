@@ -51,6 +51,7 @@ function App() {
         setIsError(false)
       })
       .catch(() => {
+        setArticles([])
         setIsError(true)
       })
   }
