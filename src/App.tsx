@@ -40,6 +40,11 @@ function App() {
     const day = ('0' + date.getDate()).slice(-2)
 
     setIsLoading(true)
+
+    /**
+     * pageviews endpoint from wikimedia
+     * https://wikimedia.org/api/rest_v1/#/Pageviews%20data/get_metrics_pageviews_top_per_country__country___access___year___month___day_
+     */
     fetch(
       `https://wikimedia.org/api/rest_v1/metrics/pageviews/top-per-country/${currentCountryCode}/all-access/${year}/${month}/${day}`
     )
