@@ -25,8 +25,8 @@ export default function PageNav({
         key={i}
         onClick={() => onPageButtonClick(i)}
         className={classNames(
-          { 'bg-lime-200 border-lime-200 text-green-700': currentPage === i },
-          'rounded-full px-2 border mx-1 font-poppins text-base w-10 h-10'
+          { 'selected-page-colors border-avocado-300': currentPage === i },
+          'rounded-full px-2 border mx-1 font-poppins text-base w-10 h-10 text-neutral-900 border-neutral-400'
         )}
       >
         {i + 1}
@@ -42,7 +42,7 @@ export default function PageNav({
         onClick={onNextPageButtonClick}
         className={classNames(
           { 'bg-gray-300': prevBtnDisabled },
-          'rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10'
+          'rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10 border-neutral-400'
         )}
       >
         {'<'}
@@ -56,7 +56,7 @@ export default function PageNav({
         onClick={onPrevPageButtonClick}
         className={classNames(
           { 'bg-gray-300': nextBtnDisabled },
-          'rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10'
+          'rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10 border-neutral-400'
         )}
       >
         {'>'}

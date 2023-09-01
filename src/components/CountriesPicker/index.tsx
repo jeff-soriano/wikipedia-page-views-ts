@@ -28,7 +28,7 @@ export default function CountriesPicker({
   useOutsideClick(countryOptionsRef, outsideClickHandler)
 
   return (
-    <div>
+    <div className="input-left-border">
       <InputButton
         isSelecting={isSelectingCountry}
         onClick={onClick}
@@ -37,7 +37,6 @@ export default function CountriesPicker({
         label="COUNTRY"
         value={countries[countryCode]}
       />
-
       <ul
         ref={countryOptionsRef}
         className={classNames(

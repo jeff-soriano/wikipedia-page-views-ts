@@ -29,7 +29,7 @@ export default function ResultsPicker({
   useOutsideClick(numResultsOptionsRef, outsideClickHandler)
 
   return (
-    <div>
+    <div className="input-left-border">
       <InputButton
         isSelecting={isSelectingNumResults}
         onClick={onClick}
@@ -47,8 +47,9 @@ export default function ResultsPicker({
           }
         )}
       >
-        {resultsOptions.map((numResults) => (
+        {resultsOptions.map((numResults, index) => (
           <li
+            key={index}
             className={classNames(
               'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
             )}

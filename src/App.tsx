@@ -64,9 +64,14 @@ function App() {
 
   return (
     <div>
-      <div className="h-20 bg-white"></div>
+      <div
+        className="h-20 bg-white border-b-2"
+        style={{ borderColor: 'rgba(2, 91, 75, 0.10)' }}
+      ></div>
       <main className="flex flex-col items-center main-width mx-auto py-8">
-        <h1 className="text-4xl mb-10 text-center">Top Wikipedia Articles</h1>
+        <h1 className="text-4xl mb-10 text-center text-neutral-900">
+          Top Wikipedia Articles
+        </h1>
         <div className="bg-white mb-5 flex control-bar justify-between w-full rounded-full px-4 py-3 drop-shadow-lg">
           <DatePicker
             date={date}
@@ -98,8 +103,9 @@ function App() {
             }}
           />
           <button
-            className="rounded-full px-3 py-2 font-poppins bg-green-800 text-white w-32 text-center button-width"
+            className="rounded-full px-3 py-2 font-poppins text-white w-32 text-center search-button"
             onClick={() => getArticles(date, numResults)}
+            style={{ backgroundColor: '#025B4B' }}
           >
             Search
           </button>

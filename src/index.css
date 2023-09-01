@@ -4,14 +4,50 @@
 @import url('https://fonts.googleapis.com/css?family=Lora');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+:root {
+  --avocado-300: #e0e9cb;
+  --green-500: #025b4b;
+  --neutral-300: #e7eaeb;
+  --neutral-400: #d4d8d9;
+  --neutral-500: #a7aaab;
+  --neutral-600: #737680;
+  --neutral-900: #05090d;
+}
+
 body {
   margin: 0;
   font-family: 'Lora';
-  background-color: rgb(248 250 252);
+  background-color: #f5f7f7;
 }
 
 .font-poppins {
   font-family: 'Poppins';
+}
+
+.selected-page-colors {
+  background-color: var(--avocado-300);
+  border-color: var(--avocado-300) !important;
+  color: var(--green-500);
+}
+
+.border-neutral-300 {
+  border-color: var(--neutral-300);
+}
+
+.border-neutral-400 {
+  border-color: var(--neutral-400);
+}
+
+.text-neutral-500 {
+  color: var(--neutral-500);
+}
+
+.text-neutral-600 {
+  color: var(--neutral-600);
+}
+
+.text-neutral-900 {
+  color: var(--neutral-900);
 }
 
 /* 
@@ -36,8 +72,8 @@ body {
 
 .react-datepicker__day--selected {
   border-radius: 50% !important;
-  color: #025b4b !important;
-  background-color: #b3cec9 !important;
+  color: var(--green-500) !important;
+  background-color: var(--avocado-300) !important;
 }
 
 /* Media queries for responsiveness */
@@ -47,13 +83,23 @@ body {
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1088px) {
   .main-width {
     width: 75%;
   }
+
+  .input-left-border {
+    @apply border-neutral-300 border-l pl-8;
+  }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (min-width: 816px) {
+  .input-left-border {
+    @apply border-neutral-300 border-l pl-8;
+  }
+}
+
+@media screen and (max-width: 815px) {
   .main-width {
     width: 100%;
   }
@@ -63,8 +109,10 @@ body {
     border-radius: 0px;
   }
 
-  .button-width {
+  .search-button {
     width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 }
 
