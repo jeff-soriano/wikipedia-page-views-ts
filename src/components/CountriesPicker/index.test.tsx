@@ -1,8 +1,6 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react'
 import CountriesPicker from './'
 
-// Mocked props for testing
-
 const mockOnClick = jest.fn()
 const mockOutsideClickHandler = jest.fn()
 const mockOnClickCountry = jest.fn((countryCode) => null)
