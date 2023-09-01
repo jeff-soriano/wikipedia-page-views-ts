@@ -35,8 +35,9 @@ export default function PageNav({
   }
 
   return (
-    <div>
+    <div data-testid="page-navigation">
       <button
+        data-testid="prev-page-btn"
         disabled={prevBtnDisabled}
         onClick={onNextPageButtonClick}
         className={classNames(
@@ -48,6 +49,7 @@ export default function PageNav({
       </button>
       {pageButtons.map((pageButton) => pageButton)}
       <button
+        data-testid="next-page-btn"
         disabled={nextBtnDisabled}
         onClick={onPrevPageButtonClick}
         className={classNames(
