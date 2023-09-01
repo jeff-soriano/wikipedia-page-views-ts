@@ -1,13 +1,10 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import list from './images/list.svg'
 import globe from './images/globe.svg'
-import useOutsideClick from './hooks/useOutsideClick'
-import { countries } from './data/countries'
-import InputButton from './components/InputButton'
 import DatePicker from './components/DatePicker'
 import ResultsPicker from './components/ResultsPicker'
+import CountriesPicker from './components/CountriesPicker'
 
 var classNames = require('classnames')
 
@@ -29,7 +26,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0)
   const [isSelectingDate, setIsSelectingDate] = useState(false)
   const [isSelectingNumResults, setIsSelectingNumResults] = useState(false)
-  const [isSelectingCountries, setIsSelectingCountries] = useState(false)
+  const [isSelectingCountry, setIsSelectingCountry] = useState(false)
   const [currentCountryCode, setCurrentCountryCode] = useState('US')
   const [isError, setIsError] = useState(false)
 
@@ -127,9 +124,6 @@ function App() {
     )
   }
 
-  const countryOptionsRef = useRef(null)
-  useOutsideClick(countryOptionsRef, () => setIsSelectingCountries(false))
-
   return (
     <div>
       <div className="h-20 bg-white"></div>
@@ -155,47 +149,16 @@ function App() {
             }}
             resultsOptions={[25, 50, 75, 100, 200]}
           />
-          <div>
-            <button
-              className={classNames(
-                {
-                  'bg-slate-100': isSelectingCountries,
-                  'hover:bg-slate-50': !isSelectingCountries,
-                },
-                'flex items-center rounded-full px-3 py-2 font-poppins'
-              )}
-              onClick={() => setIsSelectingCountries(true)}
-            >
-              <img src={globe} alt="globe" />
-              <div className="text-left ml-4 mr-6">
-                <div className="text-xs">COUNTRY ^</div>
-                <div>{countries[currentCountryCode]}</div>
-              </div>
-            </button>
-            <ul
-              ref={countryOptionsRef}
-              className={classNames(
-                'bg-white z-10 rounded-3xl py-6 absolute w-52 drop-shadow-lg font-poppins h-72 overflow-scroll',
-                {
-                  hidden: !isSelectingCountries,
-                }
-              )}
-            >
-              {Object.entries(countries).map(([key, value]) => (
-                <li
-                  className={classNames(
-                    'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
-                  )}
-                  onClick={() => {
-                    setCurrentCountryCode(key)
-                    setIsSelectingCountries(false)
-                  }}
-                >
-                  {value}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <CountriesPicker
+            isSelectingCountry={isSelectingCountry}
+            onClick={() => setIsSelectingCountry(true)}
+            countryCode={currentCountryCode}
+            outsideClickHandler={() => setIsSelectingCountry(false)}
+            onClickCountry={(countryCode) => {
+              setCurrentCountryCode(countryCode)
+              setIsSelectingCountry(false)
+            }}
+          />
           <button
             className="rounded-full px-3 py-2 font-poppins bg-green-800 text-white w-32 text-center"
             onClick={() => getArticles(date, numResults)}
