@@ -12,6 +12,7 @@
   --neutral-500: #a7aaab;
   --neutral-600: #737680;
   --neutral-900: #05090d;
+  --ivy-300: #b3cec9;
 }
 
 body {
@@ -27,6 +28,10 @@ body {
 .selected-page-colors {
   background-color: var(--avocado-300);
   border-color: var(--avocado-300) !important;
+  color: var(--green-500);
+}
+
+.text-green-500 {
   color: var(--green-500);
 }
 
@@ -50,34 +55,64 @@ body {
   color: var(--neutral-900);
 }
 
+.bg-neutral-400 {
+  background-color: var(--neutral-400);
+}
+
+.bg-ivy-300 {
+  background-color: var(--ivy-300);
+}
+
+.main-width {
+  @apply w-2/3;
+}
+
 /* 
 * Customizing the react date picker 
 * This doesn't feel like the best way to style the calendar, but it's the best solution I came up with
-* Was not able to fully style it up to figma spec
 */
 .react-datepicker {
-  @apply font-poppins text-sm !important;
+  @apply text-sm;
 }
 
-.react-datepicker__header {
-  @apply bg-white border-0 !important;
+.react-datepicker__day-names {
+  @apply mb-3 flex justify-between text-xs uppercase text-neutral-500 w-full;
 }
 
-.react-datepicker__navigation--next,
-.react-datepicker__navigation--previous {
-  @apply mt-1.5;
+.react-datepicker__month {
+  @apply w-full;
 }
 
 .react-datepicker__day--selected {
-  @apply rounded-full selected-page-colors !important;
+  @apply text-green-500 bg-ivy-300;
 }
 
 .react-datepicker__tab-loop {
   @apply absolute !important;
 }
 
-.main-width {
-  @apply w-2/3;
+.react-datepicker__day-name {
+  @apply w-9 text-center;
+}
+
+.react-datepicker__week {
+  @apply flex justify-between;
+}
+
+.react-datepicker__day {
+  @apply flex items-center justify-center m-1 h-10 w-10 cursor-pointer rounded-full;
+}
+
+.react-datepicker__day:hover {
+  @apply bg-neutral-400;
+}
+
+.react-datepicker__day--outside-month {
+  @apply text-neutral-500;
+}
+
+.react-datepicker__aria-live {
+  @apply hidden;
 }
 
 /* Media queries for responsiveness */

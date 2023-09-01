@@ -44,6 +44,19 @@ export default function DatePicker({
       }
       onCalendarClose={onCalendarClose}
       onCalendarOpen={onCalendarOpen}
+      popperClassName="bg-white font-poppins rounded-3xl px-4 py-8"
+      renderCustomHeader={({ monthDate, decreaseMonth, increaseMonth }) => {
+        return (
+          <div className="flex justify-between items-center mb-8">
+            <button onClick={() => decreaseMonth()}>{'<'}</button>
+            {monthDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+            })}
+            <button onClick={() => increaseMonth()}>{'>'}</button>
+          </div>
+        )
+      }}
     />
   )
 }
