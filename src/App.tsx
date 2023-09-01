@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import './App.css'
 import 'react-datepicker/dist/react-datepicker.css'
-import globe from './images/globe.svg'
 import DatePicker from './components/DatePicker'
 import ResultsPicker from './components/ResultsPicker'
 import CountriesPicker from './components/CountriesPicker'
-
-var classNames = require('classnames')
+import ArticlesSection from './components/ArticlesSection'
 
 type ArticleObj = {
   article: string
@@ -56,75 +54,6 @@ function App() {
       })
   }
 
-  const renderArticles = (articles: ArticleObj[], currentPage: number) => {
-    const startIndex = currentPage * 10
-    const endIndex = startIndex + 10
-
-    return articles.slice(startIndex, endIndex).map((currArticle, index) => (
-      <div
-        key={index}
-        className="flex justify-between w-full border border-gray-200 px-6 py-5 rounded-lg mb-4"
-      >
-        <div>
-          <span className="text-gray-400 text-sm">{currArticle.rank}</span>
-          <span className="ml-10">
-            {currArticle.article.replaceAll('_', ' ')}
-          </span>
-        </div>
-        <span className="text-gray-400 font-poppins text-sm">
-          {currArticle.views_ceil.toLocaleString()} views
-        </span>
-      </div>
-    ))
-  }
-
-  const renderPageNav = (numPages: number) => {
-    const pageButtons = []
-    const prevBtnDisabled = currentPage === 0
-    const nextBtnDisabled = currentPage === numPages - 1
-
-    for (let i = 0; i < numPages; i++) {
-      pageButtons.push(
-        <button
-          key={i}
-          onClick={() => setCurrentPage(i)}
-          className={classNames(
-            { 'bg-lime-200 border-lime-200 text-green-700': currentPage === i },
-            'rounded-full px-2 border mx-1 font-poppins text-base w-10 h-10'
-          )}
-        >
-          {i + 1}
-        </button>
-      )
-    }
-
-    return (
-      <div>
-        <button
-          disabled={prevBtnDisabled}
-          onClick={() => setCurrentPage(currentPage - 1)}
-          className={classNames(
-            { 'bg-gray-300': prevBtnDisabled },
-            'rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10'
-          )}
-        >
-          {'<'}
-        </button>
-        {pageButtons.map((pageButton) => pageButton)}
-        <button
-          disabled={nextBtnDisabled}
-          onClick={() => setCurrentPage(currentPage + 1)}
-          className={classNames(
-            { 'bg-gray-300': nextBtnDisabled },
-            'rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10'
-          )}
-        >
-          {'>'}
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div>
       <div className="h-20 bg-white"></div>
@@ -167,14 +96,14 @@ function App() {
             Search
           </button>
         </div>
-        {articles.length > 0 && (
-          <>
-            <div className="bg-white mb-10 p-7 w-full rounded-md">
-              {renderArticles(articles, currentPage)}
-            </div>
-            {renderPageNav(numPages)}
-          </>
-        )}
+        <ArticlesSection
+          articles={articles}
+          currentPage={currentPage}
+          numPages={numPages}
+          onPageButtonClick={(page) => setCurrentPage(page)}
+          onNextPageButtonClick={() => setCurrentPage(currentPage + 1)}
+          onPrevPageButtonClick={() => setCurrentPage(currentPage - 1)}
+        />
         {isError && (
           <div className="bg-white mb-10 p-7 w-full rounded-md bg-red-100 text-red-500 font-poppins">
             There was an error fetching the articles. Either there was no data
