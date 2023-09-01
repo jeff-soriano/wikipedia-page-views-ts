@@ -46,6 +46,7 @@ export default function CountriesPicker({
       >
         {Object.entries(countries).map(([key, value]) => (
           <li
+            key={key}
             className={classNames(
               'text-center px-4 py-2 md:hover:bg-neutral-100 cursor-pointer'
             )}
