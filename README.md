@@ -1,4 +1,4 @@
-Remember to run `npm install` before running the following commands. I used Node v18.17.1 to develop this.
+Remember to run `npm install` before running the following commands. I used Node v18.17.1 to develop this, so I recommend using the same version to avoid any potential issues.
 
 # Getting Started with Create React App
 
