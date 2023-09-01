@@ -10,16 +10,15 @@ body {
   background-color: rgb(248 250 252);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .font-poppins {
   font-family: 'Poppins';
 }
 
-/* Customizing the react date picker */
+/* 
+* Customizing the react date picker 
+* This doesn't feel like the best way to style the calendar, but it's the best solution I came up with
+* Was not able to fully style it up to figma spec
+*/
 .react-datepicker {
   font-family: 'Poppins' !important;
   font-size: 14px !important;

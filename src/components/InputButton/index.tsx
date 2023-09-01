@@ -9,6 +9,9 @@ interface Props {
   value: string | number
 }
 
+/**
+ * Wrapper component for all the different inputs in the control bar
+ */
 export default function InputButton({
   isSelecting,
   onClick,

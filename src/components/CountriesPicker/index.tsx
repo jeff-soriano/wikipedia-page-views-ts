@@ -14,6 +14,9 @@ interface Props {
   onClickCountry: (countryCode: string) => void
 }
 
+/**
+ * Component which handles selection of country
+ */
 export default function CountriesPicker({
   isSelectingCountry,
   onClick,

@@ -11,6 +11,10 @@ interface Props {
   onCalendarOpen: () => void
 }
 
+/**
+ * Component which handles selection of date
+ * Use ReactDatePicker in order to style calendar
+ */
 export default function DatePicker({
   date,
   onChange,

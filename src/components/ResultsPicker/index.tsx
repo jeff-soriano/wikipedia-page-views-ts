@@ -14,6 +14,9 @@ interface Props {
   resultsOptions: number[]
 }
 
+/**
+ * Component which handles picking the number of results to show after hitting the wikipedia endpoint
+ */
 export default function ResultsPicker({
   isSelectingNumResults,
   onClick,

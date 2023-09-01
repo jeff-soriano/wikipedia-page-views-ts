@@ -16,6 +16,9 @@ export type ArticleObj = {
   views_ceil: number
 }
 
+/**
+ * Component which renders the list of articles and the pagination navigation below it
+ */
 export default function ArticlesSection({
   articles,
   currentPage,
