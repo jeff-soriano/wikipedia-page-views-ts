@@ -35,7 +35,7 @@ export default function PageNav({
   }
 
   return (
-    <div data-testid="page-navigation">
+    <div data-testid="page-navigation" className="flex items-top">
       <button
         data-testid="prev-page-btn"
         disabled={prevBtnDisabled}
@@ -47,7 +47,9 @@ export default function PageNav({
       >
         {'<'}
       </button>
-      {pageButtons.map((pageButton) => pageButton)}
+      <div className="text-center">
+        {pageButtons.map((pageButton) => pageButton)}
+      </div>
       <button
         data-testid="next-page-btn"
         disabled={nextBtnDisabled}
