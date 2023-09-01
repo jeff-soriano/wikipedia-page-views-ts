@@ -57,9 +57,9 @@ function App() {
   return (
     <div>
       <div className="h-20 bg-white"></div>
-      <main className="flex flex-col items-center w-2/3 mx-auto py-8">
-        <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
-        <div className="bg-white mb-5 flex justify-between w-full rounded-full px-4 py-3 drop-shadow-lg">
+      <main className="flex flex-col items-center main-width mx-auto py-8">
+        <h1 className="text-4xl mb-10 text-center">Top Wikipedia Articles</h1>
+        <div className="bg-white mb-5 flex control-bar justify-between w-full rounded-full px-4 py-3 drop-shadow-lg">
           <DatePicker
             date={date}
             onChange={(date) => date && setDate(date)}
@@ -90,7 +90,7 @@ function App() {
             }}
           />
           <button
-            className="rounded-full px-3 py-2 font-poppins bg-green-800 text-white w-32 text-center"
+            className="rounded-full px-3 py-2 font-poppins bg-green-800 text-white w-32 text-center button-width"
             onClick={() => getArticles(date, numResults)}
           >
             Search

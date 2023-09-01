@@ -40,3 +40,31 @@ code {
   color: #025b4b !important;
   background-color: #b3cec9 !important;
 }
+
+/* Media queries for responsiveness */
+@media screen and (min-width: 1125px) {
+  .main-width {
+    width: 66.666667%;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .main-width {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .main-width {
+    width: 100%;
+  }
+
+  .control-bar {
+    flex-direction: column;
+    border-radius: 0px;
+  }
+
+  .button-width {
+    width: 100%;
+  }
+}
