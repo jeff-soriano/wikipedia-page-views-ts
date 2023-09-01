@@ -76,30 +76,24 @@ body {
   @apply absolute !important;
 }
 
-/* Media queries for responsiveness */
-@media screen and (min-width: 1131px) {
-  .main-width {
-    @apply w-2/3;
-  }
+.main-width {
+  @apply w-2/3;
 }
 
-@media screen and (min-width: 1088px) {
+/* Media queries for responsiveness */
+@media screen and (max-width: 1270px) {
   .main-width {
     @apply w-10/12;
   }
+}
 
+@media screen and (min-width: 1017px) {
   .input-left-border {
     @apply border-neutral-300 border-l pl-8;
   }
 }
 
-@media screen and (min-width: 816px) {
-  .input-left-border {
-    @apply border-neutral-300 border-l pl-8;
-  }
-}
-
-@media screen and (max-width: 815px) {
+@media screen and (max-width: 1016px) {
   .main-width {
     @apply w-full;
   }
