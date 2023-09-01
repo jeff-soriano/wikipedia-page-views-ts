@@ -59,7 +59,7 @@ function App() {
       <div className="h-20 bg-white"></div>
       <main className="flex flex-col items-center w-2/3 mx-auto py-8">
         <h1 className="text-4xl mb-10">Top Wikipedia Articles</h1>
-        <div className="bg-white mb-5 flex justify-between w-full rounded-full px-4 py-3">
+        <div className="bg-white mb-5 flex justify-between w-full rounded-full px-4 py-3 drop-shadow-lg">
           <DatePicker
             date={date}
             onChange={(date) => date && setDate(date)}

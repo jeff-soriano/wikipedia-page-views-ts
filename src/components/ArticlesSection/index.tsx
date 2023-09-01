@@ -28,7 +28,7 @@ export default function ArticlesSection({
     <>
       {articles.length > 0 && (
         <>
-          <div className="bg-white mb-10 p-7 w-full rounded-md">
+          <div className="bg-white mb-10 p-7 w-full rounded-md drop-shadow-lg">
             <Articles articles={articles} currentPage={currentPage} />
           </div>
           <PageNav

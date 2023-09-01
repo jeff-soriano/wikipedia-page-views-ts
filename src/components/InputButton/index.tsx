@@ -30,7 +30,14 @@ export default function InputButton({
     >
       <img src={svgSrc} alt={svgAlt} />
       <div className="text-left ml-4 mr-6">
-        <div className="text-xs">{label} ^</div>
+        <div className="text-xs text-neutral-500">
+          {label}{' '}
+          {isSelecting ? (
+            <i className="fas fa-chevron-up"></i>
+          ) : (
+            <i className="fas fa-chevron-down"></i>
+          )}
+        </div>
         <div>{value}</div>
       </div>
     </button>
