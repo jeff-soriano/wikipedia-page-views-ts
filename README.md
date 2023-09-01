@@ -1,3 +1,5 @@
+Remember to run `npm install` before running the following commands. I used Node v18.17.1 to develop this.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
