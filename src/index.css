@@ -72,6 +72,10 @@ body {
   @apply rounded-full selected-page-colors !important;
 }
 
+.react-datepicker__tab-loop {
+  @apply absolute !important;
+}
+
 /* Media queries for responsiveness */
 @media screen and (min-width: 1131px) {
   .main-width {
