@@ -39,7 +39,7 @@ export default function PageNav({
       <button
         data-testid="prev-page-btn"
         disabled={prevBtnDisabled}
-        onClick={onNextPageButtonClick}
+        onClick={onPrevPageButtonClick}
         className={classNames(
           { 'bg-gray-300': prevBtnDisabled },
           'rounded-full px-2 border mr-4 font-poppins text-base w-10 h-10 border-neutral-400'
@@ -53,7 +53,7 @@ export default function PageNav({
       <button
         data-testid="next-page-btn"
         disabled={nextBtnDisabled}
-        onClick={onPrevPageButtonClick}
+        onClick={onNextPageButtonClick}
         className={classNames(
           { 'bg-gray-300': nextBtnDisabled },
           'rounded-full px-2 border ml-4 font-poppins text-base w-10 h-10 border-neutral-400'
